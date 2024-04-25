@@ -1,9 +1,13 @@
 from flask import Flask, jsonify, request
 import psycopg2
 import csv
-import json
 from flask_cors import CORS
 from flasgger import Swagger
+from dotenv import load_dotenv
+import os
+
+SECRET_KEY = os.getenv("MY_SECRET")
+load_dotenv()
 
 app = Flask(__name__)
 CORS(app)
@@ -28,12 +32,18 @@ app.config['SWAGGER'] = {
     }
 }
 
+DATABASE = os.getenv("database")
+USER = os.getenv("user")
+PASSWORD = os.getenv("password")
+HOST = os.getenv("host")
+PORT = os.getenv("port")
 
-connection = psycopg2.connect(database="Kata_BNPParibas",
-                                user="postgres",
-                                password="root",
-                                host="localhost",
-                                port="5432")
+
+connection = psycopg2.connect(database=DATABASE,
+                                user=USER,
+                                password=PASSWORD,
+                                host=HOST,
+                                port=PORT)
 cursor = connection.cursor()
 def clear_create_table():
     cursor.execute('''
