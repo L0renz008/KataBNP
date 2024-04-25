@@ -1,0 +1,101 @@
+<!-- property-details.component.html -->
+
+<div class="property-details">
+  <h1>Property Details</h1>
+
+  <div *ngIf="isLoading; else propertyDetailsTemplate">
+    <span>Loading...</span>
+  </div>
+  <ng-template #propertyDetailsTemplate>
+    <div *ngIf="!isEditing; else updateForm">
+      <div class="details-container">
+        <div class="detail">
+          <label>Property ID:</label>
+          <span class="propertyId">{{ property[0] }}</span>
+        </div>
+        <div class="detail">
+          <label>Address:</label>
+
+          <span class="address">{{ property[1] }}</span>
+        </div>
+        <div class="detail">
+          <label>Type:</label>
+
+          <span class="type">{{ property[2] }}</span>
+        </div>
+        <div class="detail status">
+          <label>Status:</label>
+
+          <span class="status" [ngClass]="property[3]">{{ property[3] }}</span>
+        </div>
+        <div class="detail">
+          <label>Purchase Date:</label>
+
+          <span class="purchase-date">{{ property[4] | dateFormat }}</span>
+        </div>
+        <div class="detail">
+          <label>Price:</label>
+
+          <span class="price">{{ property[5] }}</span>
+        </div>
+      </div>
+
+      <button class="button edit" (click)="switchEditingMode()">Edit</button>
+    </div></ng-template
+  >
+  <ng-template #updateForm>
+    <form
+      [formGroup]="editingForm"
+      (submit)="updateProperty(property[0])"
+      class="details-container"
+    >
+      <div class="detail">
+        <label> Address </label><input formControlName="address" type="text" />
+      </div>
+      <div class="detail">
+        <label> Property Type </label
+        ><select formControlName="property_type" class="type">
+          <option value="Commercial" [selected]="property[2] === 'Commercial'">
+            Commercial
+          </option>
+          <option
+            value="Residential"
+            [selected]="property[2] === 'Residential'"
+          >
+            Residential
+          </option>
+        </select>
+      </div>
+      <div class="detail">
+        <label> Status </label
+        ><select formControlName="status" class="statu">
+          <option value="Vacant" [selected]="property[3] === 'Vacant'">
+            Vacant
+          </option>
+          <option value="Occupied" [selected]="property[3] === 'Occupied'">
+            Occupied
+          </option>
+        </select>
+      </div>
+      <div class="detail">
+        <label> Purchase date </label
+        ><input
+          class="purchase-date"
+          type="date"
+          formControlName="purchase_date"
+        />
+      </div>
+      <div class="detail">
+        <label> Price </label><input type="number" formControlName="price" />
+      </div>
+    </form>
+    <div class="buttonContainer">
+      <button class="button confirm" (click)="updateProperty(property[0])">
+        Confirm
+      </button>
+      <button class="button cancel" (click)="switchEditingMode()">
+        Cancel
+      </button>
+    </div>
+  </ng-template>
+</div>

@@ -1,0 +1,61 @@
+<div class="header">
+  <h1>Tasks List</h1>
+
+  <app-maintenance-form></app-maintenance-form>
+</div>
+
+<div class="table-container">
+  <table class="maintenances-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Description</th>
+        <th>Status</th>
+        <th>Due date</th>
+        <th>Property ID</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <div *ngIf="isLoading">Loading tasks...</div>
+    <tbody>
+      <tr *ngFor="let maintenance of maintenances">
+        <td>{{ maintenance[0] }}</td>
+        <td>{{ maintenance[1] }}</td>
+        <td>{{ maintenance[2] }}</td>
+        <td>{{ maintenance[3] | dateFormat }}</td>
+        <td>{{ maintenance[4] }}</td>
+        <td>
+          <button class="edit" (click)="editMaintenance(maintenance[0])">
+            Edit
+          </button>
+          <button class="delete" (click)="showDeleteMessage()">Delete</button>
+        </td>
+        <div class="modal" id="deleteModal" *ngIf="openedDeleteMessage">
+          <div class="modal-content">
+            <div class="modal-header">
+              <div class="modal-title">Confirm Delete?</div>
+              <div class="close-button" (click)="showDeleteMessage()">X</div>
+            </div>
+            <p class="modal-message">
+              Are you sure you want to delete this item?
+            </p>
+            <div class="modal-buttons">
+              <button
+                class="modal-button confirm-button"
+                (click)="deleteMaintenance(maintenance[0])"
+              >
+                Confirm
+              </button>
+              <button
+                class="modal-button cancel-button"
+                (click)="showDeleteMessage()"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      </tr>
+    </tbody>
+  </table>
+</div>

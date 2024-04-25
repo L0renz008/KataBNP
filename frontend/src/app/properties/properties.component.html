@@ -1,0 +1,49 @@
+<div class="header">
+  <h1>Properties List</h1>
+
+  <app-property-form></app-property-form>
+</div>
+
+<div *ngIf="isLoading">Loading properties...</div>
+<div class="container">
+  <div *ngFor="let property of properties" class="property">
+    <div class="propertyHeader">
+      <span class="address">{{ property[1] }}</span
+      ><span class="status" [ngClass]="property[3]">{{ property[3] }}</span>
+    </div>
+    <span class="type">{{ property[2] }}</span>
+
+    <span class="date">Purchase date: {{ property[4] | dateFormat }}</span>
+    <span class="price">{{ property[5] }}€</span>
+    <div class="buttonContainer">
+      <a [routerLink]="['/properties', property[0]]" routerLinkActive="active">
+        <button class="edit">View details</button></a
+      >
+      <button class="delete" (click)="showDeleteMessage()">Delete</button>
+    </div>
+    <!-- Modal HTML structure -->
+    <div class="modal" id="deleteModal" *ngIf="openedDeleteMessage">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="modal-title">Confirm Delete?</div>
+          <div class="close-button" (click)="showDeleteMessage()">X</div>
+        </div>
+        <p class="modal-message">Are you sure you want to delete this item?</p>
+        <div class="modal-buttons">
+          <button
+            class="modal-button confirm-button"
+            (click)="deleteProperty(property[0])"
+          >
+            Confirm
+          </button>
+          <button
+            class="modal-button cancel-button"
+            (click)="showDeleteMessage()"
+          >
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

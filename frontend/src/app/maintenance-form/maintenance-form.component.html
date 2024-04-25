@@ -1,0 +1,25 @@
+<button (click)="showForm()">Add a task</button>
+<form [formGroup]="maintenanceForm" (submit)="addMaintenance()" *ngIf="visible">
+  <label>
+    Description *
+    <input formControlName="description" type="text" />
+  </label>
+  <label>
+    Status
+    <select formControlName="status">
+      <option value="In Progress">In Progress</option>
+      <option value="Pending">Pending</option>
+      <option value="Completed">Completed</option>
+    </select>
+  </label>
+  <label>
+    Scheduled Date *
+    <input type="date" formControlName="scheduled_date" />
+  </label>
+  <label>
+    Property ID *
+    <input type="number" formControlName="propertyid" />
+  </label>
+
+  <button type="submit" [disabled]="!maintenanceForm.valid">Add Task</button>
+</form>

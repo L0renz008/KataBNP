@@ -1,0 +1,32 @@
+<button (click)="showForm()">Add a tenant</button>
+<form [formGroup]="tenantForm" (submit)="addTenant()" *ngIf="visible">
+  <label>
+    Full name *
+    <input formControlName="name" type="text" />
+  </label>
+  <label>
+    Phone number *
+    <input formControlName="contact_info" type="text" />
+  </label>
+  <label>
+    Lease Term Start *
+    <input type="date" formControlName="lease_term_start" />
+  </label>
+  <label>
+    Lease Term End *
+    <input type="date" formControlName="lease_term_end" />
+  </label>
+  <label>
+    Rental payment status
+    <select formControlName="rental_payment_status">
+      <option value="Paid">Paid</option>
+      <option value="Pending">Pending</option>
+    </select>
+  </label>
+  <label>
+    Property ID *
+    <input type="number" formControlName="propertyid" />
+  </label>
+
+  <button type="submit" [disabled]="!tenantForm.valid">Add Tenant</button>
+</form>

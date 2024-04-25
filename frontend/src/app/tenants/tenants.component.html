@@ -1,0 +1,63 @@
+<div class="header">
+  <h1>Tenants List</h1>
+
+  <app-tenant-form></app-tenant-form>
+</div>
+
+<div class="table-container">
+  <table class="tenants-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Phone</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Status</th>
+        <th>Property ID</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <div *ngIf="isLoading">Loading tenants...</div>
+    <tbody>
+      <tr *ngFor="let tenant of tenants">
+        <td>{{ tenant[0] }}</td>
+        <td>{{ tenant[1] }}</td>
+        <td>{{ tenant[2] }}</td>
+        <td>{{ tenant[3] | dateFormat }}</td>
+        <td>{{ tenant[4] | dateFormat }}</td>
+        <td>{{ tenant[5] }}</td>
+        <td>{{ tenant[6] }}</td>
+        <td>
+          <button class="edit" (click)="editTenant(tenant[0])">Edit</button>
+          <button class="delete" (click)="showDeleteMessage()">Delete</button>
+        </td>
+        <div class="modal" id="deleteModal" *ngIf="openedDeleteMessage">
+          <div class="modal-content">
+            <div class="modal-header">
+              <div class="modal-title">Confirm Delete?</div>
+              <div class="close-button" (click)="showDeleteMessage()">X</div>
+            </div>
+            <p class="modal-message">
+              Are you sure you want to delete this item?
+            </p>
+            <div class="modal-buttons">
+              <button
+                class="modal-button confirm-button"
+                (click)="deleteTenant(tenant[0])"
+              >
+                Confirm
+              </button>
+              <button
+                class="modal-button cancel-button"
+                (click)="showDeleteMessage()"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      </tr>
+    </tbody>
+  </table>
+</div>

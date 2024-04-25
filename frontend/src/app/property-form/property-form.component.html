@@ -1,0 +1,46 @@
+<button (click)="showForm()">Add a property</button>
+<div class="overlay modal" *ngIf="visible">
+  <form [formGroup]="propertyForm" (submit)="addProperty()" class="overlay">
+    <label>
+      Address <span class="required">*</span><br />
+      <input formControlName="address" type="text" />
+    </label>
+    <label>
+      Property Type <span class="required">*</span><br />
+      <select formControlName="property_type">
+        <option value="Commercial">Commercial</option>
+        <option value="Residential">Residential</option>
+      </select>
+    </label>
+    <label>
+      Status <span class="required">*</span><br />
+      <select formControlName="status">
+        <option value="Vacant">Vacant</option>
+        <option value="Occupied">Occupied</option>
+      </select>
+    </label>
+    <label>
+      Purchase date <span class="required">*</span><br />
+      <input
+        class="purchase-date"
+        type="date"
+        formControlName="purchase_date"
+      />
+    </label>
+    <label>
+      Price <span class="required">*</span><br />
+      <input type="number" formControlName="price" />
+    </label>
+    <div class="buttonContainer">
+      <button class="close-button" (click)="showForm()">Close</button>
+
+      <button
+        class="submit-button"
+        type="submit"
+        [disabled]="!propertyForm.valid"
+      >
+        {{ isLoading ? "Loading..." : "Add Property" }}
+      </button>
+    </div>
+  </form>
+</div>
