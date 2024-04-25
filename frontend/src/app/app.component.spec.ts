@@ -8,11 +8,10 @@ describe('AppComponent', () => {
     TestBed.configureTestingModule({
       imports: [RouterModule, AppComponent],
       providers: [
-        // Provide a mock ActivatedRoute
         {
           provide: ActivatedRoute,
           useValue: {
-            params: of({}), // Mock params as an empty object
+            params: of({}),
           },
         },
       ],

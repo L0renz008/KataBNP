@@ -1,5 +1,5 @@
 <button (click)="showForm()">Add a property</button>
-<div class="overlay modal" *ngIf="visible">
+<div *ngIf="visible">
   <form [formGroup]="propertyForm" (submit)="addProperty()" class="overlay">
     <label>
       Address <span class="required">*</span><br />

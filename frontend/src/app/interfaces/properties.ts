@@ -1,4 +1,3 @@
-// export type Property = [][];
 export interface Property {
   propertyid?: number;
   address: string;

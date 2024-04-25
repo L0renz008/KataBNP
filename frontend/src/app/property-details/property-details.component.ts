@@ -69,18 +69,17 @@ export class PropertyDetailsComponent {
   }
   switchEditingMode() {
     this.editingForm.patchValue({
-      address: this.property[1], // Assuming property[1] is the address
-      property_type: this.property[2], // Assuming property[2] is the property type
-      status: this.property[3], // Assuming property[3] is the status
-      purchase_date: this.property[4], // Assuming property[4] is the purchase date
-      price: this.property[5], // Assuming property[5] is the price
+      address: this.property[1],
+      property_type: this.property[2],
+      status: this.property[3],
+      purchase_date: this.property[4],
+      price: this.property[5],
     });
     this.isEditing = !this.isEditing;
   }
 
   ngOnInit(): void {
     this.isLoading = true;
-    // Retrieve propertyId from route parameters
     this.route.paramMap.subscribe((params) => {
       const propertyId = parseInt(params.get('propertyid') as string, 10);
       this.backendService.getOneProperty(propertyId).subscribe(

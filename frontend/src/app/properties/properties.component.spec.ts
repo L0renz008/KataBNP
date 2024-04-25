@@ -25,7 +25,6 @@ describe('PropertiesComponent', () => {
 
     await TestBed.configureTestingModule({
       imports: [HttpClientModule],
-      // declarations: [PropertiesComponent],
       providers: [
         PropertiesComponent,
         { provide: BackendService, useValue: backendServiceSpy },

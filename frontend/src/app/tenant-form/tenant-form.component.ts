@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
-  FormGroup,
   Validators,
   FormControl,
   ReactiveFormsModule,
@@ -17,7 +16,6 @@ import { NgIf } from '@angular/common';
   templateUrl: './tenant-form.component.html',
   styleUrl: './tenant-form.component.scss',
 })
-// export class TenantFormComponent {}
 export class TenantFormComponent implements OnInit {
   visible: boolean = false;
 

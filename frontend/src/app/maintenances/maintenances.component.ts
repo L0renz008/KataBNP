@@ -49,6 +49,7 @@ export class MaintenancesComponent implements OnInit {
         console.log(error);
       }
     );
+    this.showDeleteMessage();
   }
 
   addMaintenance(maintenance: Maintenance) {

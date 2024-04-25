@@ -25,7 +25,6 @@ import { DateFormatPipe } from '../date-format.pipe';
 export class PropertiesComponent implements OnInit {
   properties: PropertyArray[] = [];
 
-  // openedForm = false;
   openedDeleteMessage = false;
   isLoading: boolean = false;
 
@@ -69,15 +68,4 @@ export class PropertiesComponent implements OnInit {
     const dateSplit = date.split(' ');
     return `${dateSplit[1]} ${dateSplit[2]} ${dateSplit[3]}`;
   }
-
-  // loadProperties(): void {
-  //   this.backendService.getProperties().subscribe(
-  //     (data) => {
-  //       this.properties = data;
-  //     },
-  //     (error) => {
-  //       console.error('Failed to load properties:', error);
-  //     }
-  //   );
-  // }
 }

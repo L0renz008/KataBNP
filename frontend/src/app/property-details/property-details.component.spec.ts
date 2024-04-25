@@ -21,7 +21,7 @@ describe('PropertyDetailsComponent', () => {
         {
           provide: ActivatedRoute,
           useValue: {
-            paramMap: of(convertToParamMap({ propertyid: '1' })), // Mock paramMap with propertyid '1'
+            paramMap: of(convertToParamMap({ propertyid: '1' })),
           },
         },
       ],

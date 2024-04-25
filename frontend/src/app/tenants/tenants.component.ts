@@ -45,6 +45,7 @@ export class TenantsComponent implements OnInit {
         console.log(error);
       }
     );
+    this.showDeleteMessage();
   }
 
   editTenant(tenantid: number) {
